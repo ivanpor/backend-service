@@ -1,11 +1,54 @@
 spring:
-   cloud:
-      stream:
-         bindings:
-            sincronization:
-               destination:  sincronization
-               content-type: application/json
-         kafka:
-            binder:
-               zkNodes: ivanpor:2181
-               brokers: ivanpor:9092
+  application:
+    name: BROKER
+  profiles:
+    active: standalone
+  activemq:
+      broker-url: tcp://localhost:61616
+      user: admin
+      password: admin
+    
+app:
+  version: @project.version@
+
+logging:
+  level:
+    root: ERROR
+    
+amiga:
+  service:
+    aaa:
+      classic:
+        sso:
+          applicationSSO: customSSOName
+    rest-swagger:
+      ui:
+        title: '@project.name@'
+        description: '@project.description@'
+        #contact: SomeContactName
+        #web: http://www.inditex.com
+        #email: your_team_email@inditex.com
+  data:
+    jms:
+      connectionFactory:
+        broker1:
+          brokerURL: tcp://0.0.0.0:61616
+          userName: admin
+          password: admin
+          
+batchservice:
+  articulos:
+    endpoints:
+      queue:
+        process: 
+          destination: "activemq:queue:articulos"
+          destinationError: "activemq:queue:articulos.error"
+          maximuRedeliveries: 3
+          delayRedeliveries: 5000
+      direct:
+        altaArticulo: "direct:altaArticulo"
+        eliminacionArticulo: "direct:eliminacionArticulo"
+        modificacionArticulo: "direct:modificacionArticulo"
+      ws: 
+        url: "http://localhost:8080/services/articuloWS"
+        alta: "saveArticulo"

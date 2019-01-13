@@ -1,0 +1,19 @@
+server:
+  context-path: /BROKER
+  port: 8082
+logging:
+  level:
+    root: INFO
+amiga:
+  service:
+    aaa:
+      local:
+        enable-local-test: true
+    rest:
+      logging:
+        is-production: false
+               
+backend:
+  endpoints:
+    maestroarticulos: http://localhost:8080/services/articuloWS
+        
