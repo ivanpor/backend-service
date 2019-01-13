@@ -4,21 +4,17 @@ import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.cxf.CxfEndpoint;
 
-import org.apache.camel.model.dataformat.JsonLibrary;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 
-import com.inditex.broker.api.dto.Articulo;
 import com.inditex.broker.api.properties.ArticuloProperties;
-import com.inditex.broker.api.service.ArticuloService;
 
-import com.inditex.broker.ms.processor.ArticuloAltaResponseProcessor;
 import com.inditex.broker.ms.processor.ArticuloRouteProcessor;
-import com.inditex.broker.ms.utils.AccionMensaje;
+import com.inditex.broker.ms.utils.Accion;
+import com.inditex.broker.ms.utils.Header;
 
 @Configuration
 public class ArticuloRoute extends RouteBuilder {
@@ -32,9 +28,6 @@ public class ArticuloRoute extends RouteBuilder {
 	@Qualifier("articuloWS")
 	@Autowired
 	private CxfEndpoint articuloWS;
-	
-	@Autowired
-	private ArticuloService articuloService;
 	
 	private Logger logger = LoggerFactory.getLogger(ArticuloAltaRoute.class);
 
@@ -52,14 +45,14 @@ public class ArticuloRoute extends RouteBuilder {
 		
 		//Enrrutador principal de artículos
 		from(articuloProperties.getProcessArticulosQueue())
-			.log(LoggingLevel.INFO, logger, "INICIO ENRRUTADO ARTICULOS")
+			.log(LoggingLevel.INFO, logger, "INICIO ENRRUTADO ARTICULO. [idMensaje: ${id}]")
 			.transacted()
 			.choice()
-            .when(header("accion").isEqualTo(AccionMensaje.ALTA.getAccion()))
+            .when(header(Header.ACCION.getKey()).isEqualTo(Accion.ALTA.getAccion()))
                 .to(articuloProperties.getAltaArticuloDirect())
-            .when(header("accion").isEqualTo(AccionMensaje.ELIMINACION.getAccion()))
+            .when(header(Header.ACCION.getKey()).isEqualTo(Accion.ELIMINACION.getAccion()))
                 .to(articuloProperties.getEliminacionArticuloDirect())
-            .when(header("accion").isEqualTo(AccionMensaje.MODIFICACION.getAccion()))
+            .when(header(Header.ACCION.getKey()).isEqualTo(Accion.MODIFICACION.getAccion()))
                 .to(articuloProperties.getModificacionArticuloDirect())
             .otherwise()
             	.log(LoggingLevel.INFO, logger, "Accion no válida: ${body}")

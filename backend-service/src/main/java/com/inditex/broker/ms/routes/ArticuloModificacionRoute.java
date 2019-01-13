@@ -18,8 +18,6 @@ import com.inditex.broker.api.service.ArticuloService;
 
 import com.inditex.broker.ms.processor.ArticuloAltaResponseProcessor;
 
-import com.inditex.broker.ms.utils.AccionMensaje;
-
 @Configuration
 public class ArticuloModificacionRoute extends RouteBuilder {
 	
