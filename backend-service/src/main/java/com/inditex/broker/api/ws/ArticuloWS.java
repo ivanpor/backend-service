@@ -18,6 +18,32 @@ public interface ArticuloWS {
     @WebResult(name = "articulo", targetNamespace = "")
     public Articulo saveArticulo(
         @WebParam(name = "arg0", targetNamespace = "")
-        ArticuloRequest arg0
+        ArticuloRequest arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2
+    );
+    
+    @WebMethod
+    @WebResult(name = "articulo", targetNamespace = "")
+    public Articulo deleteArticulo(
+        @WebParam(name = "arg0", targetNamespace = "")
+        ArticuloRequest arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2
+    );
+    
+    @WebMethod
+    @WebResult(name = "articulo", targetNamespace = "")
+    public Articulo editArticulo(
+        @WebParam(name = "arg0", targetNamespace = "")
+        ArticuloRequest arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2
     );
 }

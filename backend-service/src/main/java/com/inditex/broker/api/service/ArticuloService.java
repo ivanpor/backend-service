@@ -5,5 +5,5 @@ import com.inditex.broker.api.ws.ArticuloRequest;
 
 public interface ArticuloService {
 
-	public ArticuloRequest procesarArticulo(Articulo lista);
+	public Object[] procesarArticulo(Articulo lista);
 }

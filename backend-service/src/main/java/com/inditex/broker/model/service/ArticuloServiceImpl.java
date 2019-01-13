@@ -21,7 +21,7 @@ public class ArticuloServiceImpl implements ArticuloService {
 	private Logger logger = LoggerFactory.getLogger(ArticuloService.class);
 
 	@Override
-	public ArticuloRequest procesarArticulo(Articulo articulo){
+	public Object[] procesarArticulo(Articulo articulo){
 		
 		logger.info("Inicio procesamiento articulo en {tranformarArticulo}");
 		
@@ -35,6 +35,8 @@ public class ArticuloServiceImpl implements ArticuloService {
 		request.setCodigo(articulo.getCodigo());
 		request.setDescripcion(articulo.getDescripcion());
 		logger.info("Fin procesamiento articulo en {tranformarArticulo}");
-		return request;
+		
+		//Se devuelve un array con los 3 parámetros con los qeu se invocará el web service
+		return new Object[] {request, "usuarioTest", "idiomaTest"};
 	}
 }

@@ -44,11 +44,15 @@ batchservice:
           destination: "activemq:queue:articulos"
           destinationError: "activemq:queue:articulos.error"
           maximuRedeliveries: 3
-          delayRedeliveries: 5000
+          delayRedeliveries: 1000
       direct:
         altaArticulo: "direct:altaArticulo"
         eliminacionArticulo: "direct:eliminacionArticulo"
         modificacionArticulo: "direct:modificacionArticulo"
+        articuloWsRoute: "direct:articuloWsRoute"
       ws: 
         url: "http://localhost:8080/services/articuloWS"
         alta: "saveArticulo"
+        eliminacion: "deleteArticulo"
+        modificacion: "editArticulo"
+        

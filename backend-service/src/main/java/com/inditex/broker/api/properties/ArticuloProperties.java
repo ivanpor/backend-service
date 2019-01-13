@@ -27,6 +27,15 @@ public class ArticuloProperties {
 	@Value("${batchservice.articulos.endpoints.ws.alta}")
 	private String altaArticulosWs;
 	
+	@Value("${batchservice.articulos.endpoints.ws.eliminacion}")
+	private String eliminacionArticulosWs;
+	
+	@Value("${batchservice.articulos.endpoints.ws.modificacion}")
+	private String modificacionArticulosWs;
+	
+	@Value("${batchservice.articulos.endpoints.direct.articuloWsRoute}")
+	private String articuloWsRoute;
+	
 	@Value("${batchservice.articulos.endpoints.direct.altaArticulo}")
 	private String altaArticuloDirect;
 	

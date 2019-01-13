@@ -1,6 +1,6 @@
 package com.inditex.broker.ms.utils;
 
-public enum AccionMensaje {
+public enum AccionArticulo {
 	
 	ALTA(Short.valueOf("1")),
 	ELIMINACION(Short.valueOf("2")),
@@ -8,7 +8,7 @@ public enum AccionMensaje {
 	
 	private Short accion;
 	
-	private AccionMensaje(Short accion) {
+	private AccionArticulo(Short accion) {
 		this.accion=accion;
 	}
 
