@@ -10,7 +10,10 @@ import com.inditex.broker.api.dto.Articulo;
 import com.inditex.broker.api.service.ArticuloService;
 
 import com.inditex.broker.ms.processor.ArticuloAltaResponseProcessor;
+<<<<<<< HEAD
 import com.inditex.broker.ms.utils.HeaderArticulo;
+=======
+>>>>>>> branch 'master' of https://github.com/ivanpor/backend-service
 
 @Configuration
 public class ArticuloModificacionRoute extends ArticuloBaseRoute {
